@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Booked Parcels</h2>
+
+    <table border="1" id="parcelTable">
+        <tr>
+            <th>ID</th>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Pickup</th>
+            <th>Delivery</th>
+            <th>Weight</th>
+            <th>Status</th>
+        </tr>
+    </table>
+
+<script>
+fetch("http://127.0.0.1:5000/parcels")
+.then(res => res.json())
+.then(data => {
+    let table = document.getElementById("parcelTable");
+
+    data.forEach(parcel => {
+        table.innerHTML += `
+        <tr>
+            <td>${parcel.id}</td>
+            <td>${parcel.sender}</td>
+            <td>${parcel.receiver}</td>
+            <td>${parcel.pickup}</td>
+            <td>${parcel.delivery}</td>
+            <td>${parcel.weight}</td>
+            <td><span style="font-weight:bold;color:${parcel.status=='Booked' ? 'orange' :parcel.status=='In Transit' ? 'blue' :parcel.status=='Delivered' ? 'green' : 'black'};">${parcel.status}</span></td>
+        </tr>
+        `;
+    });
+});
+</script>
+
+</body>
+</html>
