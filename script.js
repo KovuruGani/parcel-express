@@ -85,7 +85,7 @@ let pickup = document.getElementById("pickup").value;
 let delivery = document.getElementById("delivery").value;
 let weight = document.getElementById("weight").value;
 
-if(sender=="" || reciever=="" || pickup=="" || delivery=="" || weight==""){
+if(sender=="" || receiver=="" || pickup=="" || delivery=="" || weight==""){
     alert("please fill all fields.");
     return;
 }
