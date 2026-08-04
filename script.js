@@ -18,7 +18,7 @@ if (registerForm) {
             return;
         }
 
-        let response = await fetch("http://127.0.0.1:5000/register", {
+        let response = await fetch("https://parcel-express-4.onrender.com/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -48,7 +48,7 @@ if (loginForm) {
         let email = document.getElementById("loginEmail").value;
         let password = document.getElementById("loginPassword").value;
 
-        let response = await fetch("http://127.0.0.1:5000/login", {
+        let response = await fetch("https://parcel-express-4.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -94,7 +94,7 @@ if(isNaN(weight) || weight<=0){
     return;
 }
 
-let response=await fetch("http://127.0.0.1:5000/book",{
+let response = await fetch("https://parcel-express-4.onrender.com/book", {
 
 method:"POST",
 
@@ -128,7 +128,7 @@ function trackParcel() {
         return;
     }
 
-    fetch("http://127.0.0.1:5000/track/" + id)
+    fetch("https://parcel-express-4.onrender.com/track/" + id)
     .then(response => response.json())
     .then(data => {
 
