@@ -18,7 +18,7 @@ if (registerForm) {
             return;
         }
 
-        let response = await fetch("https://parcel-express-5.onrender.com/register", {
+        let response = await fetch("http://127.0.0.1:5000/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -37,6 +37,7 @@ if (registerForm) {
     });
 
 }
+
 let loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
@@ -48,7 +49,7 @@ if (loginForm) {
         let email = document.getElementById("loginEmail").value;
         let password = document.getElementById("loginPassword").value;
 
-        let response = await fetch("https://parcel-express-5.onrender.com/login", {
+        let response = await fetch("http://127.0.0.1:5000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -72,13 +73,15 @@ if (loginForm) {
     });
 
 }
+
 let bookForm = document.getElementById("bookForm");
 
 if(bookForm){
 
-bookForm.addEventListener("submit",async function(e){
+bookForm.addEventListener("submit", async function(e){
 
 e.preventDefault();
+
 let sender = document.getElementById("sender").value;
 let receiver = document.getElementById("receiver").value;
 let pickup = document.getElementById("pickup").value;
@@ -86,15 +89,16 @@ let delivery = document.getElementById("delivery").value;
 let weight = document.getElementById("weight").value;
 
 if(sender=="" || receiver=="" || pickup=="" || delivery=="" || weight==""){
-    alert("please fill all fields.");
+    alert("Please fill all fields.");
     return;
 }
+
 if(isNaN(weight) || weight<=0){
     alert("Enter a valid weight.");
     return;
 }
 
-let response = await fetch("https://parcel-express-5.onrender.com/book", {
+let response = await fetch("http://127.0.0.1:5000/book", {
 
 method:"POST",
 
@@ -114,21 +118,24 @@ weight:weight
 
 });
 
-let result=await response.json();
+let result = await response.json();
 
-document.getElementById("bookMessage").innerHTML=result.message;
+document.getElementById("bookMessage").innerHTML = result.message;
 
 });
+
 }
+
 function trackParcel() {
 
     let id = document.getElementById("parcelId").value;
+
     if(id==""){
-        alert("please enter parcel ID");
+        alert("Please enter Parcel ID");
         return;
     }
 
-    fetch("https://parcel-express-5.onrender.com/track/" + id)
+    fetch("http://127.0.0.1:5000/track/" + id)
     .then(response => response.json())
     .then(data => {
 
@@ -137,7 +144,7 @@ function trackParcel() {
             document.getElementById("result").innerHTML =
             "Status : " + data.status;
 
-        }else{
+        } else {
 
             document.getElementById("result").innerHTML =
             "Parcel Not Found";
@@ -147,4 +154,3 @@ function trackParcel() {
     });
 
 }
-
